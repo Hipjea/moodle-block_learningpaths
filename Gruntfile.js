@@ -26,13 +26,34 @@ module.exports = function (grunt) {
             tasks: ["webpack"]
         },
         amd: {
-            files: "src/*.tsx",
-            tasks: ["webpack --mode=production --node-env=production"]
+            files: "amd/src/*/js",
+            tasks: ["eslint:amd", "babel"]
         },
         eslint: {
             options: {
-                quiet: (!grunt.option('show-lint-warnings')) && (typeof grunt.option('max-lint-warnings') === 'undefined'),
-                maxWarnings: 0
+                maxWarnings: 50000,
+                rules: {
+                    'no-tabs': 0,
+                    'curly': 0,
+                    'no-undef': 0,
+                    'no-unused-vars': 0,
+                    'max-len': 0,
+                    'babel/no-unused-expressions': 0,
+                    'wrap-iife': 0,
+                    'babel/semi': 0,
+                    'no-console': 0,
+                    'no-eq-null': 0,
+                    'no-new-wrappers': 0,
+                    'no-return-assign': 0,
+                    'no-cond-assign': 0,
+                    'no-bitwise': 0,
+                    'no-labels': 0,
+                    'no-func-assign': 0,
+                    'no-unmodified-loop-condition': 0,
+                    'valid-typeof': 0,
+                    'no-self-compare': 0,
+                    'no-fallthrough': 0
+                }
             },
             amd: {src: [path.resolve(__dirname, "amd/src/*.js")]}
         },
@@ -70,7 +91,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    src: path.resolve(__dirname, "amd/build/index.js"),
+                    src: path.resolve(__dirname, "amd/src/index.js"),
                     rename: babelRename
                 }]
             }

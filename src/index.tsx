@@ -1,9 +1,12 @@
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import App from './components/App';
+
 const init = () => {
-    return console.log("init");
+    return ReactDOM.render(
+        <App />,
+        document.getElementById('learningpaths-block-root')
+    );
 };
 
-const debug = () => {
-    return console.log("debug");
-};
-
-export { init, debug };
+export { init };

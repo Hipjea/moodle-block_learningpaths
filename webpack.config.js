@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const isProduction = process.env.NODE_ENV == 'production';
 
 const config = {
     entry: {
@@ -15,7 +14,7 @@ const config = {
     module: {
         rules: [
             {
-				test: /\.tsx?$/,
+				test: /\.ts(x)?$/,
 				use: "ts-loader",
 				exclude: /node_modules/,
 			},
@@ -41,10 +40,7 @@ const config = {
 };
 
 module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-    } else {
-        config.mode = 'development';
-    }
+    config.mode = 'production';
+
     return config;
 };
