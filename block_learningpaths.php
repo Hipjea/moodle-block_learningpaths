@@ -61,7 +61,6 @@ class block_learningpaths extends block_base {
 
         $this->content = new stdClass();
         $this->content->text = $data['name'];
-        $this->content->text .= '<div id="learningpaths-block-root"></div>';
         $renderer = $this->page->get_renderer('block_studentstracker');
         $content = new \block_learningpaths\output\main();
         $this->content->text = $renderer->render($content);

@@ -14,7 +14,7 @@ const config = {
     module: {
         rules: [
             {
-				test: /\.tsx?$/,
+				test: /\.ts(x)?$/,
 				use: "ts-loader",
 				exclude: /node_modules/,
 			},
@@ -41,5 +41,6 @@ const config = {
 
 module.exports = () => {
     config.mode = 'production';
+
     return config;
 };
