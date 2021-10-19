@@ -26,13 +26,24 @@ module.exports = function (grunt) {
             tasks: ["webpack"]
         },
         amd: {
-            files: "src/*.tsx",
-            tasks: ["webpack --mode=production --node-env=production"]
+            files: "amd/src/*/js",
+            tasks: ["eslint:amd", "babel"]
         },
         eslint: {
             options: {
-                quiet: (!grunt.option('show-lint-warnings')) && (typeof grunt.option('max-lint-warnings') === 'undefined'),
-                maxWarnings: 0
+                quiet: true,
+                maxWarnings: 100,
+                rules: {
+                    'no-tabs': 0,
+                    'curly': 0,
+                    'no-undef': 0,
+                    'no-unused-vars': 0,
+                    'max-len': 0,
+                    'babel/no-unused-expressions': 0,
+                    'wrap-iife': 0,
+                    'babel/semi': 0,
+                    'no-console': 0
+                }
             },
             amd: {src: [path.resolve(__dirname, "amd/src/*.js")]}
         },
@@ -70,7 +81,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    src: path.resolve(__dirname, "amd/build/index.js"),
+                    src: path.resolve(__dirname, "amd/src/index.js"),
                     rename: babelRename
                 }]
             }

@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const isProduction = process.env.NODE_ENV == 'production';
 
 const config = {
     entry: {
@@ -41,10 +40,6 @@ const config = {
 };
 
 module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-    } else {
-        config.mode = 'development';
-    }
+    config.mode = 'production';
     return config;
 };
