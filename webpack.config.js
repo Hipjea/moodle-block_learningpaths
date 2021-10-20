@@ -41,6 +41,5 @@ const config = {
 
 module.exports = () => {
     config.mode = 'production';
-
     return config;
 };

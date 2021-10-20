@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             // If any .less file changes in directory "less" then run the "less" task.
-            files: "src/*.tsx",
+            files: "src/**/*.tsx",
             tasks: ["webpack"]
         },
         amd: {
