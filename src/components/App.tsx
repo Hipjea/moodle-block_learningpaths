@@ -1,8 +1,12 @@
 import * as React from 'react';
+import type { AppProps } from '../types/App';
+import View from './View';
 
-const App = () => {
+
+const App = (params: AppProps): JSX.Element => {
+    console.log(params);
     return (
-        <div>learningpaths-block-root from React</div>
+        <View {...params} />
     );
 }
 

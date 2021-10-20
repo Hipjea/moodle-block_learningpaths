@@ -16,6 +16,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+require_once realpath(__DIR__ . '/vendor/autoload.php');
+
 /**
  * learningpaths block
  *
@@ -26,10 +28,8 @@ defined('MOODLE_INTERNAL') || die();
 
 class block_learningpaths extends block_base {
     public function init() {
-        global $COURSE;
         $this->blockname = get_class($this);
         $this->title = get_string('pluginname', 'block_learningpaths');
-        $this->courseid = $COURSE->id;
     }
 
     public function instance_allow_multiple() {
@@ -44,25 +44,14 @@ class block_learningpaths extends block_base {
         return true;
     }
 
-    public function specialization() {
-    }
-
     public function get_content() {
-        global $PAGE;
-        $url = "https://test.luniversitenumerique.fr/wp-json/learningpathsapi/v1/data/1";
-        $ch = curl_init($url); // such as http://example.com/example.xml
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        $data = curl_exec($ch);
-        curl_close($ch);
-
-        $data = json_decode($data, true);
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+        
+        $renderer = $this->page->get_renderer('block_studentstracker');
+        $content = new \block_learningpaths\output\main($_ENV['API_URL']);
 
         $this->content = new stdClass();
-        $this->content->text = $data['name'];
-        $renderer = $this->page->get_renderer('block_studentstracker');
-        $content = new \block_learningpaths\output\main();
         $this->content->text = $renderer->render($content);
         return $this->content;
     }
