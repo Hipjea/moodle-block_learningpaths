@@ -1,4 +1,9 @@
+<p>test : {{{ apiUrl }}}</p>
 <div id="learningpaths-block-root"></div>
 {{#js}}
-require(['block_learningpaths/index'], function(lp) { lp.init(); });
+require(['block_learningpaths/index'], function(lp) {
+    lp.init({
+        apiUrl: '{{{ apiUrl }}}'
+    });
+});
 {{/js}}

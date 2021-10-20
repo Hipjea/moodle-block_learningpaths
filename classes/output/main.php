@@ -30,12 +30,11 @@ use renderer_base;
 use stdClass;
 
 class main implements renderable, templatable {
-
     /**
      * Constructor.
      */
-    public function __construct() {
-
+    public function __construct($apiUrl) {
+        $this->apiUrl = $apiUrl;
     }
 
     /**
@@ -46,12 +45,10 @@ class main implements renderable, templatable {
      */
     public function export_for_template(renderer_base $output) {
         $data = new stdClass();
-
         $data = array(
-            
+            'apiUrl' => $this->apiUrl
         );
 
         return $data;
     }
-
 }
