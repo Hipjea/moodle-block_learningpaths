@@ -1,4 +1,4 @@
-export type Field =
+export type FieldProps =
     |   {
             name: string;
             diplomas: Array<{
