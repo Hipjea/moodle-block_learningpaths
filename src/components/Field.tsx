@@ -4,7 +4,7 @@ import type { FieldProps } from '../types/Field';
 
 const Field = (params: FieldProps): JSX.Element => {
     return (
-        <h5>{params.name}</h5>
+        <h3 className="lpb-field-name">{params.name}</h3>
     );
 }
 

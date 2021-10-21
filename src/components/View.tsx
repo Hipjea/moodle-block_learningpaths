@@ -5,7 +5,7 @@ import type { FieldProps } from '../types/Field';
 
 
 const View = (params: AppProps) => {
-    const [fields, setFields] = useState<Array<FieldProps> | []>([]);
+    const [fields, setFields] = useState<Array<FieldProps>>([]);
 
     useEffect(() => {
         fetchAPI().then(data => {
@@ -13,7 +13,7 @@ const View = (params: AppProps) => {
         });
     }, []);
 
-    const fetchAPI = async (): Promise<Array<FieldProps> | []> => {
+    const fetchAPI = async (): Promise<Array<FieldProps>> => {
         const response = await fetch(`${params.apiUrl}/fields/all`);
         const data = await response.json();
         return data.fields;

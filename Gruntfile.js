@@ -23,7 +23,7 @@ module.exports = function (grunt) {
         watch: {
             // If any .less file changes in directory "less" then run the "less" task.
             files: "src/**/*.tsx",
-            tasks: ["webpack"]
+            tasks: ["webpack", "less"]
         },
         amd: {
             files: "amd/src/*/js",
@@ -55,7 +55,9 @@ module.exports = function (grunt) {
                     'no-fallthrough': 0
                 }
             },
-            amd: {src: [path.resolve(__dirname, "amd/src/*.js")]}
+            amd: { 
+                src: [path.resolve(__dirname, "amd/src/*.js")] 
+            }
         },
         babel: {
             options: {
@@ -95,6 +97,20 @@ module.exports = function (grunt) {
                     rename: babelRename
                 }]
             }
+        },
+        less: {
+            // Production config is also available.
+            development: {
+                options: {
+                    // Specifies directories to scan for @import directives when parsing.
+                    // Default value is the directory of the source, which is probably what you want.
+                    paths: ["less/"],
+                    compress: true
+                },
+                files: {
+                    "styles.css": "less/styles.less"
+                }
+            },
         },
         webpack: {
             wConfig: webpackConfig,
