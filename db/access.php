@@ -34,7 +34,6 @@ $capabilities = array(
             'teacher' => CAP_ALLOW,
             'manager' => CAP_ALLOW
         ),
-
         'clonepermissionsfrom' => 'moodle/site:manageblocks'
     ),
     'block/learningpaths:view' => array(
