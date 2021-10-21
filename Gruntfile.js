@@ -117,6 +117,6 @@ module.exports = function (grunt) {
         }
     });
     // The default task (running "grunt" in console).
-    grunt.registerTask("default", ["webpaack", "less"]);
+    grunt.registerTask("default", ["webpack", "less"]);
     grunt.loadNpmTasks('grunt-webpack');
 };
