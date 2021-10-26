@@ -9,21 +9,6 @@
 @greenBgAlt:  #dff4f2;
 @modalMinVH:    40vh;
 
-.lpb-field-name {
-    background-color: @blue;
-    border-bottom: 4px solid transparent;
-    color: white !important;
-    transition: 0.2s all ease;
-    padding-top: 10px;
-    padding-bottom: 6px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin: 10px 0;
-
-    &:hover {
-        cursor: pointer;
-    }
-}
 
 .lpb-field {
     display: flex;
@@ -33,10 +18,10 @@
     &.active {
         .lpb-field-name {
             background-color: transparent;
-            color: $blue;
+            color: @blue;
             padding-left: 0;
             padding-right: 0;
-            border-bottom: 4px solid $blue;
+            border-bottom: 4px solid @blue;
         }
 
         .lpb-field-content {
@@ -44,3 +29,68 @@
             opacity: 1;
         }
     }
+
+    .lpb-field-name {
+        background-color: @blue;
+        border-bottom: 4px solid transparent;
+        color: white !important;
+        transition: 0.2s all ease;
+        padding-top: 10px;
+        padding-bottom: 6px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 10px 0;
+    
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .lpb-field-content {
+        display: none;
+        opacity: 0;
+        transition: 0.5s all ease;
+
+        .lpb-diploma {
+            margin: 0.5em 0;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.active {
+                .lpb-diploma-name {
+                    background-color: @green;
+                    color: white;
+                }
+                .lpb-diploma-description {
+                    display: flex;
+                }
+            }
+
+            .lpb-diploma-name {
+                flex-basis: 30%;
+                background-color: @greyBg;
+                color: @green;
+                padding: 10px 15px;
+                margin: 0;
+                font-size: 1.05em;
+            }
+
+            .lpb-diploma-description {
+                display: none;
+                flex: 1 0 30%;
+                padding-left: 1em;
+            }
+
+            .lpb-diploma-body {
+                display: none;
+
+                &.active {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}

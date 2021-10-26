@@ -4,7 +4,6 @@ import View from './View';
 
 
 const App = (params: AppProps): JSX.Element => {
-    console.log(params);
     return (
         <View {...params} />
     );
