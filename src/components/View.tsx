@@ -8,9 +8,7 @@ const View = (params: AppProps) => {
     const [fields, setFields] = useState<Array<FieldProps>>([]);
 
     useEffect(() => {
-        fetchAPI().then(data => {
-            setFields(data);
-        });
+        fetchAPI().then(data => setFields(data));
     }, []);
 
     const fetchAPI = async (): Promise<Array<FieldProps>> => {

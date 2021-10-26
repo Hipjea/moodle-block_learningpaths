@@ -31,7 +31,8 @@ module.exports = function (grunt) {
         },
         eslint: {
             options: {
-                maxWarnings: 50000,
+                quiet: true,
+                maxWarnings: -1,
                 rules: {
                     'no-tabs': 0,
                     'curly': 0,
@@ -117,6 +118,6 @@ module.exports = function (grunt) {
         }
     });
     // The default task (running "grunt" in console).
-    grunt.registerTask("default", ["less"]);
+    grunt.registerTask("default", ["webpack", "less"]);
     grunt.loadNpmTasks('grunt-webpack');
 };

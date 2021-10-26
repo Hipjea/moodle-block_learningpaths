@@ -57,6 +57,12 @@ class block_learningpaths extends block_base {
     }
 
     public function applicable_formats() {
-        return array('all' => false, 'course' => true, 'course-index' => false);
+        return array(
+            'all' => false,
+            'course' => true,
+            'course-index' => true,
+            'my' => true,
+            'site-index' => true,
+        );
     }
 }
