@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Diploma from './Diploma';
 import type { FieldProps } from '../types/Field';
 
 
@@ -9,14 +10,7 @@ const Field = (params: FieldProps): JSX.Element => {
         return (
             params.diplomas && params.diplomas.map(item => {
                 return (
-                    <article key={item.id} className="lpb-diploma">
-                        <h4 
-                            className="lpb-diploma-name" 
-                            data-lpb-id={item.id}
-                        >
-                            {item.name}
-                        </h4>
-                    </article>
+                    <Diploma {...item} />
                 );
             })
         );

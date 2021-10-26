@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { AppProps } from '../types/App';
 import View from './View';
 
