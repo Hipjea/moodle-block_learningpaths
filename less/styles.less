@@ -24,3 +24,23 @@
         cursor: pointer;
     }
 }
+
+.lpb-field {
+    display: flex;
+    flex-direction: column;
+    overscroll-behavior: contain;
+
+    &.active {
+        .lpb-field-name {
+            background-color: transparent;
+            color: $blue;
+            padding-left: 0;
+            padding-right: 0;
+            border-bottom: 4px solid $blue;
+        }
+
+        .lpb-field-content {
+            display: block;
+            opacity: 1;
+        }
+    }
