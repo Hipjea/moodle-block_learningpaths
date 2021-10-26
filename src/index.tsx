@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './components/App';
 import type { AppProps } from './types/App';
-import AppContext from './context';
+import AppProvider from './context';
 
 
 const init = (params: AppProps) => {
     return ReactDOM.render(
-        <AppContext.Provider value={params}>
+        <AppProvider>
             <App {...params} />
-        </AppContext.Provider>,
+        </AppProvider>,
         document.getElementById('learningpaths-block-root')
     );
 };
