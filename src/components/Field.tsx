@@ -1,25 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import type { FieldProps } from '../types/Field';
-import type { DataProps } from '../types/Data';
 
 
 const Field = (params: FieldProps): JSX.Element => {
-    const [data, setData] = useState<Array<DataProps>>([]);
+    const renderDiplomas = () => {
+        return (
+            params.diplomas && params.diplomas.map(item => {
+                console.log(item.name);
 
-    useEffect(() => {
-        fetchAPI().then(data => {
-            setData(data);
-        });
-    }, []);
-
-    const fetchAPI = async (): Promise<Array<DataProps>> => {
-        const response = await fetch(`${apiUrl}/data/1`);
-        const data = await response.json();
-        return data.fields;
+                return (
+                    <article key={item.id} className="lpb-diploma">
+                        <h4 
+                            className="lpb-diploma-name" 
+                            data-lpb-id={item.id}
+                        >
+                            {item.name}
+                        </h4>
+                    </article>
+                );
+            })
+        );
     };
 
     return (
-        <h3 className="lpb-field-name">{params.name}</h3>
+        <>
+            <h3 className="lpb-field-name">{params.name}</h3>
+            <div className="lpb-field-content">
+                {renderDiplomas()}
+            </div>
+        </>
     );
 }
 

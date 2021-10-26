@@ -1,7 +1,7 @@
 export type FieldProps =
     |   {
             name: string;
-            diplomas: Array<{
+            diplomas?: Array<{
                 id: number;
                 name: string;
             }>;
