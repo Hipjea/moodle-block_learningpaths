@@ -31,7 +31,8 @@ module.exports = function (grunt) {
         },
         eslint: {
             options: {
-                maxWarnings: 50000,
+                quiet: true,
+                maxWarnings: -1,
                 rules: {
                     'no-tabs': 0,
                     'curly': 0,
