@@ -2,7 +2,7 @@ import React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './components/App';
 import type { AppProps } from './types/App';
-import AppProvider from './context';
+import AppProvider from './components/Context';
 
 
 const init = (params: AppProps) => {

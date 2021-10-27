@@ -10,7 +10,7 @@ interface IContext {
 const defaultState = {
   apiUrl: '',
   setUrl: () => '',
-  currentData: '',
+  currentData: null,
   setCurrentData: () => {}
 };
 
@@ -20,7 +20,7 @@ const AppProvider = ({ children }: any) => {
   const [apiUrl, setApiUrl] = useState<string>('');
   const setUrl = (newUrl: any) => setApiUrl((_: any) => newUrl);
   
-  const [currentData, setData] = useState<any>({});
+  const [currentData, setData] = useState<any>(null);
   const setCurrentData = (newData: any) => setData((_: any) => newData);
 
   return (
