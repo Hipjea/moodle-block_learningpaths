@@ -16,8 +16,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once realpath(__DIR__ . '/vendor/autoload.php');
-
 /**
  * learningpaths block
  *
@@ -45,11 +43,13 @@ class block_learningpaths extends block_base {
     }
 
     public function get_content() {
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
-        
-        $renderer = $this->page->get_renderer('block_studentstracker');
-        $content = new \block_learningpaths\output\main($_ENV['API_URL']);
+        $apiurl = get_config('learningpaths', 'apiurl');
+        if (!isset($apiurl)) {
+            throw new \Error('No defined API URL');
+        }
+
+        $renderer = $this->page->get_renderer('block_learningpaths');
+        $content = new \block_learningpaths\output\main($apiurl);
 
         $this->content = new stdClass();
         $this->content->text = $renderer->render($content);
