@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version    = 2021100600;
+$plugin->version    = 2021102700;
 $plugin->requires   = 2016052300;
-$plugin->release    = '0.0.1';
+$plugin->release    = '0.1.0';
 $plugin->component  = 'block_learningpaths';
 $plugin->maturity   = MATURITY_STABLE;
