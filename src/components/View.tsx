@@ -18,11 +18,11 @@ const View = (params: AppProps) => {
     };
 
     return(
-        <>
+        <ul className="lpb-diploma-list">
             { fields.map(field => {
                 return <Field {...field} />
             }) }
-        </>
+        </ul>
     );
 };
 

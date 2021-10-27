@@ -9,86 +9,125 @@
 @greenBgAlt:  #dff4f2;
 @modalMinVH:    40vh;
 
+.tableBorder() {
+    border: 2px solid transparent;
+    padding: .25em .75em;
+}
+
+.flipAnim(@opacity, @perspective, @translateZ, @rotateX, @rotateY, @scale) {
+    opacity: @opacity;
+    -webkit-transform: perspective(@perspective) translateZ(@translateZ) rotateX(@rotateX) rotateY(@rotateY) scale(@scale);
+    transform: perspective(@perspective) translateZ(@translateZ) rotateX(@rotateX) rotateY(@rotateY) scale(@scale);
+}
+
+.colorBgBorder(@borderTop, @borderRight, @borderBottom, @borderLeft, @borderCorlor, @bgColor, @color) {
+    border-width: @borderTop @borderRight @borderBottom @borderLeft;
+    border-color: @borderCorlor;
+    border-style: solid;
+    background-color: @bgColor;
+    color: @color;
+}
+
+.lpb-ue-name {
+    .tableBorder();
+    background-color: @greenBg !important;
+    color: white !important;
+}
+
+@keyframes rotate-rt {
+    0% { -webkit-transform: rotate(0deg); }
+    25% { -webkit-transform: rotate(180deg); }
+    100% { -webkit-transform: rotate(180deg); }
+}
+
+@keyframes flip {
+    0% { .flipAnim(0, 400px, 0, 0, 0, 1); }
+    33% { .flipAnim(1, 400px, 0, 180deg, 0, 1); }
+    66% { .flipAnim(0, 400px, 0, 0, 180deg, 1); }
+    100% { .flipAnim(1, 400px, 0, 0, 180deg, 1); }
+}
+
 #learningpaths-block-root {
-    .lpb-field {
-        display: flex;
-        flex-direction: column;
-        overscroll-behavior: contain;
+    display: flex;
+    flex-direction: row;
 
-        &.active {
+    ul.lpb-diploma-list {
+        width: 100%;
+        padding-left: 0;
+
+        .lpb-field {
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
+            overscroll-behavior: contain;
+
+            &.active {
+                .lpb-field-name {
+                    .colorBgBorder(0, 0, 4px, 0, @blue, transparent, @blue);
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+
+                .lpb-field-content {
+                    display: block;
+                    opacity: 1;
+                }
+            }
+
             .lpb-field-name {
-                background-color: transparent;
-                color: @blue !important;
-                padding-left: 0;
-                padding-right: 0;
-                border-bottom: 4px solid @blue;
-            }
-
-            .lpb-field-content {
-                display: block;
-                opacity: 1;
-            }
-        }
-
-        .lpb-field-name {
-            background-color: @blue;
-            border-bottom: 4px solid transparent;
-            color: white;
-            transition: 0.2s all ease;
-            padding-top: 10px;
-            padding-bottom: 6px;
-            padding-left: 15px;
-            padding-right: 15px;
-            margin: 10px 0;
-        
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        .lpb-field-content {
-            display: none;
-            opacity: 0;
-            transition: 0.5s all ease;
-
-            .lpb-diploma {
-                margin: 0.5em 0;
+                .colorBgBorder(0, 0, 4px, 0, transparent, @blue, white);
+                transition: 0.2s all ease;
+                padding: 10px 15px 6px 15px;
+                margin: 10px 0;
 
                 &:hover {
                     cursor: pointer;
                 }
+            }
 
-                &.active {
-                    .lpb-diploma-name {
-                        background-color: @green;
-                        color: white;
+            .lpb-field-content {
+                display: none;
+                opacity: 0;
+                transition: 0.5s all ease;
+
+                .lpb-diploma {
+                    margin: 0.5em 0;
+
+                    &:hover {
+                        cursor: pointer;
                     }
-                    .lpb-diploma-description {
-                        display: flex;
-                    }
-                }
-
-                .lpb-diploma-name {
-                    flex-basis: 30%;
-                    background-color: @greyBg;
-                    color: @green;
-                    padding: 10px 15px;
-                    margin: 0;
-                    font-size: 1.05em;
-                }
-
-                .lpb-diploma-description {
-                    display: none;
-                    flex: 1 0 30%;
-                    padding-left: 1em;
-                }
-
-                .lpb-diploma-body {
-                    display: none;
 
                     &.active {
-                        display: flex;
-                        flex-direction: column;
+                        .lpb-diploma-name {
+                            .colorBgBorder(0, 0, 0, 0, transparent, @green, white);
+                        }
+                        .lpb-diploma-description {
+                            display: flex;
+                        }
+                    }
+
+                    .lpb-diploma-name {
+                        .colorBgBorder(0, 0, 0, 0, transparent, @greyBg, @green);
+                        flex-basis: 30%;
+                        padding: 10px 15px;
+                        margin: 0;
+                        font-size: 1.05em;
+                    }
+
+                    .lpb-diploma-description {
+                        display: none;
+                        flex: 1 0 30%;
+                        padding-left: 1em;
+                    }
+
+                    .lpb-diploma-body {
+                        display: none;
+                        padding: 0 !important;
+
+                        &.active {
+                            display: flex;
+                            flex-direction: column;
+                        }
                     }
                 }
             }
@@ -98,24 +137,22 @@
     #lpb-modal {
         display: none;
         position: fixed;
-        z-index: 1;
+        z-index: 100;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgb(0, 0, 0);
         background-color: rgba(0, 0, 0, 0.3);
 
         &.active {
-            display: block;
+            display: flex;
         }
 
         #lpb-modal-content {
-            background-color: #fefefe;
+            .colorBgBorder(1px, 1px, 1px, 1px, @greyBg, #fefefe, inherit);
             margin: 12% auto;
             padding: 20px;
-            border: 1px solid @greyBg;
             width: 90%;
             min-height: @modalMinVH;
 
@@ -130,6 +167,184 @@
                     color: black;
                     text-decoration: none;
                     cursor: pointer;
+                }
+            }
+
+            #lpb-modal-content-body {
+                .loader {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    height: @modalMinVH;
+
+                    h6 {
+                        color: @blue;
+                    }
+
+                    .loader-inner {
+                        opacity: 0;
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        background: rgb(185,218,252);
+                        background: linear-gradient(0deg, rgba(185,218,252,1) 0%, rgba(250,231,229,1) 100%);
+                        -webkit-animation: flip 3s cubic-bezier(0.2, 0.3, 0.25, 0.9) infinite;
+                        animation: flip 3s cubic-bezier(0.2, 0.3, 0.25, 0.9) infinite;
+                    }
+                }
+
+                .lpb-diploma-name {
+                    color: @blue;
+                    margin-top: 0.45em;
+                    font-size: 1.6em;
+                }
+
+                .lpb-diploma-description {
+                    color: @blue;
+                }
+
+                .lpb-diploma-body {
+                    padding: 0 !important;
+                
+                    .lpb-year-name {
+                        .colorBgBorder(2px, 2px, 2px, 2px, transparent, @blue, white);
+                        font-size: 1.45em;
+                        padding: 0.25em 0.5em;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        &:after {
+                            content: " ";
+                            width: 37px;
+                            height: 37px;
+                            background-image: url([[pix:block_learningpaths|chevron-right]]);
+                            background-repeat: no-repeat;
+                            position: relative;
+                            margin-right: 0;
+                            float: right;
+                            -webkit-animation: all 1s ease;
+                            -moz-animation: all 1s ease;
+                            animation: all 1s ease;
+                        }
+
+                        &.active {
+                            .colorBgBorder(2px, 2px, 2px, 2px, @blue, white, @blue);
+                            &:after {
+                                background-image: url([[pix:block_learningpaths|chevron-down]]);
+                            }
+                        }
+                    }
+                }
+
+                .flex-table {
+                    display: none;
+
+                    &.active {
+                        display: block;
+                    }
+
+                    .column-wrapper {
+                        margin-bottom: 3em;
+
+                        .lpb-ue-name {
+                            background: linear-gradient(90deg, rgba(250,231,229,1) 0%, rgba(185,218,252,1) 100%);
+                            font-size: 1.1em;
+                            color: @blue !important;
+                            padding: .75em .5em;
+                            margin-top: 1.75em;
+                            margin-bottom: 4px;
+                        }
+
+                        .column {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: flex-start;
+                            flex-wrap: nowrap;
+
+                            &:nth-child(even) {
+                                background-color: @greyBgAlt;
+                            }
+
+                            &.header {
+                                .th {
+                                    .colorBgBorder(0, 2px, 0, 2px, white, @greenBg, white);
+                                    &:first-child {
+                                        border-width: 0 2px 2px 0;
+                                    }
+                                    &:last-child {
+                                        border-width: 0 0 2px 2px;
+                                    }
+                                }
+                            }
+
+                            .cell {
+                                .tableBorder();
+                                width: 25%;
+                                padding: .25em .75em;
+                                font-size: .85em;
+
+                                &:first-child {
+                                    width: 60%;
+                                }
+
+                                &:last-child {
+                                    width: 15%;
+                                }
+                                    
+                                &.lpb-resource-name {
+                                    font-size: 1em;
+
+                                    a {
+                                        color: @green;
+                                        text-decoration: underline;
+                                    }
+                                }
+
+                                &.tbody-th {
+                                    .tableBorder();
+                                    background-color: @greenBgAlt;
+                                }
+                            }                           
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 991.98px) {
+    #learningpaths-block-root {
+        #lpb-modal {
+            #lpb-modal-content {
+                width: 98%;
+                padding: 15px;
+                margin: 8% auto;
+
+                #lpb-modal-close {
+                    position: fixed;
+                    top: 60px;
+                    right: 32px;
+                    font-size: 3em;
+                }
+
+                #lpb-modal-content-body {
+                    .flex-table {
+                        .column-wrapper {
+                            .column {
+                                flex-direction: column;
+                                &.header {
+                                    display: none;
+                                }
+                                .cell {
+                                    width: 100% !important;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
