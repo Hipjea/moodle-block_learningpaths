@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context';
 
-const Modal = (params: any): JSX.Element => {
-    console.log("modal", params);
+
+const Modal = (): JSX.Element => {
+    const { currentData } = useContext(AppContext);
+
+    console.log("modal", currentData);
 
     return (
         <div id="lpb-modal">

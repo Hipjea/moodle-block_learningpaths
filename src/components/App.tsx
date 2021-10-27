@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import type { AppProps } from '../types/App';
 import View from './View';
+import Modal from './Modal';
 import { AppContext } from '../context';
 
 
@@ -12,7 +13,10 @@ const App = (params: AppProps): JSX.Element => {
     }, []);
 
     return (
-        <View {...params} />
+        <>
+            <View {...params} />
+            <Modal />
+        </>
     );
 }
 
