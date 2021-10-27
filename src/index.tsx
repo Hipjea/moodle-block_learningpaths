@@ -1,8 +1,8 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
+import AppProvider from './components/Context';
 import App from './components/App';
 import type { AppProps } from './types/App';
-import AppProvider from './components/Context';
 
 
 const init = (params: AppProps) => {
