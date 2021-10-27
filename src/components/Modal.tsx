@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from './Context';
 import DataView from './DataView';
 
@@ -6,15 +6,24 @@ import DataView from './DataView';
 const Modal = (): JSX.Element => {
     const { currentData, setCurrentData } = useContext(AppContext);
     const [showModal, setShowModal] = useState<boolean>(false);
-    
-    console.log("cdata", currentData);
+    const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        console.log("modal", currentData);
         if (currentData && currentData != {}) {
             setShowModal(true);
         }
     });
+
+    useEffect(() => {
+        // handle the click outside of the modal body
+        const handleClick = (e: any) => {
+            if (modalRef && modalRef.current && !modalRef.current.contains(e.target)) {
+                closeModal();
+            }
+        }
+        document.addEventListener("click", handleClick);
+        return () => document.removeEventListener("click", handleClick);
+    }, []);
 
     const closeModal = () => { 
         setCurrentData(null), setShowModal(false);
@@ -22,7 +31,10 @@ const Modal = (): JSX.Element => {
 
     return (
         <div id="lpb-modal" className={`${showModal ? "active" : ""}`}>
-            <div id="lpb-modal-content">
+            <div 
+                ref={modalRef}
+                id="lpb-modal-content"
+            >
                 <span 
                     id="lpb-modal-close"
                     onClick={() => closeModal()}
