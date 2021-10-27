@@ -17,7 +17,6 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-loader": "^8.2.2",
-    "css-loader": "^6.4.0",
     "eslint": "^8.0.1",
     "grunt": "^1.4.1",
     "grunt-contrib-clean": "^2.0.0",
@@ -25,9 +24,6 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-load-gruntfile": "^0.0.2",
     "grunt-webpack": "^4.0.3",
-    "sass": "^1.43.2",
-    "sass-loader": "^12.2.0",
-    "style-loader": "^3.3.0",
     "ts-loader": "^9.2.6",
     "tsconfig-paths": "^3.11.0",
     "webpack": "^5.58.2"

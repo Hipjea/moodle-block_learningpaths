@@ -22,3 +22,5 @@
  */
 $string['learningpaths:addinstance'] = 'Add a new block L\'Université Numérique Learning paths';
 $string['pluginname'] = 'L\'Université Numérique Learning paths';
+$string['apiurl'] = 'API URL';
+$string['apiurl_desc'] = 'API URL of L\'Université Numérique Learning paths';
