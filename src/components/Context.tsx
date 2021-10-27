@@ -5,13 +5,17 @@ interface IContext {
   setUrl: (data: string) => void;
   currentData: any;
   setCurrentData: (data: any) => void;
+  loader: boolean;
+  setLoader: (data: boolean) => void;
 }
   
 const defaultState = {
   apiUrl: '',
   setUrl: () => '',
   currentData: null,
-  setCurrentData: () => {}
+  setCurrentData: () => {},
+  loader: false,
+  setLoader: () => false
 };
 
 export const AppContext = createContext<IContext>(defaultState);
@@ -23,13 +27,18 @@ const AppProvider = ({ children }: any) => {
   const [currentData, setData] = useState<any>(null);
   const setCurrentData = (newData: any) => setData((_: any) => newData);
 
+  const [loader, setLoaderState] = useState<boolean>(false);
+  const setLoader = (newState: boolean) => setLoaderState((_: boolean) => newState);
+
   return (
     <AppContext.Provider
       value={{
         apiUrl,
         setUrl,
         currentData,
-        setCurrentData
+        setCurrentData,
+        loader,
+        setLoader
       }}
     >
       {children}

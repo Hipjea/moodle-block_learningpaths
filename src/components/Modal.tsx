@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from './Context';
 import DataView from './DataView';
+import Loader from './Loader';
 
 
 const Modal = (): JSX.Element => {
-    const { currentData, setCurrentData } = useContext(AppContext);
+    const { currentData, setCurrentData, loader } = useContext(AppContext);
     const [showModal, setShowModal] = useState<boolean>(false);
     const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (currentData && currentData != {}) {
+        if (currentData && currentData != {} && currentData != []) {
             setShowModal(true);
         }
     });
@@ -42,7 +43,10 @@ const Modal = (): JSX.Element => {
                     &times;
                 </span>
                 <div id="lpb-modal-content-body">
-                    <DataView {...currentData} />
+                    { loader 
+                        ? <Loader />
+                        : <DataView {...currentData} />
+                    }
                 </div>
             </div>
         </div>

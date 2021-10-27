@@ -9,11 +9,14 @@ interface Params {
 }
 
 const Diploma = (params: Params): JSX.Element => {
-    const { apiUrl, setCurrentData } = useContext(AppContext);
+    const { apiUrl, setCurrentData, setLoader } = useContext(AppContext);
 
     const fetchData = (id: number) => {
-        fetchAPI(id).then(jsonData => { 
+        setLoader(true);
+
+        fetchAPI(id).then(jsonData => {
             setCurrentData(jsonData);
+            setLoader(false);
         });
     }
 
