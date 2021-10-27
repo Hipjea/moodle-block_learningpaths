@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react';
-import AppContext from '../context';
-import Modal from './Modal';
+import React, { useContext } from 'react';
+import { AppContext } from './Context';
 import type { DataProps } from '../types/Data';
 
 
@@ -10,26 +9,19 @@ interface Params {
 }
 
 const Diploma = (params: Params): JSX.Element => {
-    const ctx = useContext(AppContext);
-    console.log("ctx", ctx);
-
-    const [data, setData] = useState<DataProps>();
+    const { apiUrl, setCurrentData, setLoader } = useContext(AppContext);
 
     const fetchData = (id: number) => {
-        fetchAPI(id).then(jsonData => { 
-            setData(jsonData);
-            renderModal();
+        setLoader(true);
+
+        fetchAPI(id).then(jsonData => {
+            setCurrentData(jsonData);
+            setLoader(false);
         });
     }
 
-    const renderModal = () => {
-        return (
-            <Modal {...data} />
-        )
-    }
-
     const fetchAPI = async (id: number): Promise<DataProps> => {
-        const response = await fetch(`${ctx.apiUrl}/data/${id}`);
+        const response = await fetch(`${apiUrl}/data/${id}`);
         return await response.json();
     };
 

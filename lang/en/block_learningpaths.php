@@ -20,5 +20,5 @@
  * @copyright  2021 Pierre Duverneix
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-$string['learningpaths:addinstance'] = 'Add a new block Learning paths';
-$string['pluginname'] = 'Learning paths';
+$string['learningpaths:addinstance'] = 'Add a new block L\'Université Numérique Learning paths';
+$string['pluginname'] = 'L\'Université Numérique Learning paths';

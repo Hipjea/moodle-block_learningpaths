@@ -13,19 +13,12 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Version file
+ * Classes to enforce the various access rules that can apply to a quiz.
  *
  * @package    block_learningpaths
  * @copyright  2021 Pierre Duverneix
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->version    = 2021102700;
-$plugin->requires   = 2016052300;
-$plugin->release    = '0.1.0';
-$plugin->component  = 'block_learningpaths';
-$plugin->maturity   = MATURITY_STABLE;
+$string['learningpaths:addinstance'] = 'Ajouter un block Parcours de L\'Université Numérique';
+$string['pluginname'] = 'Parcours de L\'Université Numérique';
