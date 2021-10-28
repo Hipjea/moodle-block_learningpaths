@@ -8,6 +8,7 @@
 @greenBg:     #92c7c4;
 @greenBgAlt:  #dff4f2;
 @modalMinVH:    40vh;
+@contentMaxWidth: 1180px;
 
 .tableBorder() {
     border: 2px solid transparent;
@@ -53,7 +54,7 @@
 
     ul.lpb-diploma-list {
         width: 100%;
-        max-width: 750px;
+        max-width: @contentMaxWidth;
         margin-left: auto;
         margin-right: auto;
         padding-left: 0;
@@ -157,7 +158,7 @@
             .colorBgBorder(1px, 1px, 1px, 1px, @greyBg, #fefefe, inherit);
             margin: 12% auto;
             padding: 20px;
-            width: 90%;
+            max-width: @contentMaxWidth;
             min-height: @modalMinVH;
 
             #lpb-modal-close {
