@@ -28,6 +28,10 @@ chrome-user-data
 
 .env
 .eslintcache
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
 .yarn-integrity
 npm-debug.log*
 yarn-debug.log*

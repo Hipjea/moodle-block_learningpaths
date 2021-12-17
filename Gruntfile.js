@@ -33,27 +33,29 @@ module.exports = function (grunt) {
             options: {
                 quiet: true,
                 maxWarnings: -1,
-                rules: {
-                    'no-tabs': 0,
-                    'curly': 0,
-                    'no-undef': 0,
-                    'no-unused-vars': 0,
-                    'max-len': 0,
-                    'babel/no-unused-expressions': 0,
-                    'wrap-iife': 0,
-                    'babel/semi': 0,
-                    'no-console': 0,
-                    'no-eq-null': 0,
-                    'no-new-wrappers': 0,
-                    'no-return-assign': 0,
-                    'no-cond-assign': 0,
-                    'no-bitwise': 0,
-                    'no-labels': 0,
-                    'no-func-assign': 0,
-                    'no-unmodified-loop-condition': 0,
-                    'valid-typeof': 0,
-                    'no-self-compare': 0,
-                    'no-fallthrough': 0
+                overrideConfig: {
+                    rules: {
+                        'no-tabs': 0,
+                        'curly': 0,
+                        'no-undef': 0,
+                        'no-unused-vars': 0,
+                        'max-len': 0,
+                        'babel/no-unused-expressions': 0,
+                        'wrap-iife': 0,
+                        'babel/semi': 0,
+                        'no-console': 0,
+                        'no-eq-null': 0,
+                        'no-new-wrappers': 0,
+                        'no-return-assign': 0,
+                        'no-cond-assign': 0,
+                        'no-bitwise': 0,
+                        'no-labels': 0,
+                        'no-func-assign': 0,
+                        'no-unmodified-loop-condition': 0,
+                        'valid-typeof': 0,
+                        'no-self-compare': 0,
+                        'no-fallthrough': 0
+                    }
                 }
             },
             amd: { 
