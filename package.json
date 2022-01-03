@@ -6,6 +6,7 @@
   "repository": "https://github.com/Hipjea/moodle-block_learningpaths",
   "author": "Pierre Duverneix",
   "license": "MIT",
+  "babel": {},
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
@@ -17,6 +18,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^10.2.0",
     "eslint": "^8.0.1",
     "grunt": "^1.4.1",
     "grunt-contrib-clean": "^2.0.0",

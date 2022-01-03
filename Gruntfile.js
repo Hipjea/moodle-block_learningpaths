@@ -1,6 +1,7 @@
 "use strict";
 
 const webpackConfig = require('./webpack.config.js');
+const webpackProductionConfig = require('./webpack.production.js');
 const path = require('path');
 
 var babelRename = function(destPath, srcPath) {
@@ -23,11 +24,7 @@ module.exports = function (grunt) {
         watch: {
             // If any .less file changes in directory "less" then run the "less" task.
             files: ["src/**/*.tsx", "less/*.less"],
-            tasks: ["webpack", "less"]
-        },
-        amd: {
-            files: "amd/src/*/js",
-            tasks: ["eslint:amd", "babel"]
+            tasks: ["webpack:dev", "less"]
         },
         eslint: {
             options: {
@@ -116,7 +113,8 @@ module.exports = function (grunt) {
             },
         },
         webpack: {
-            wConfig: webpackConfig,
+            prod: webpackProductionConfig,
+            dev: webpackConfig,
         }
     });
     // The default task (running "grunt" in console).
