@@ -13,15 +13,29 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
- * Classes to enforce the various access rules that can apply to a quiz.
+ * Block edit form file.
  *
  * @package    block_learningpaths
- * @copyright  2021 Pierre Duverneix
+ * @copyright  2022 Pierre Duverneix
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-$string['learningpaths:addinstance'] = 'Add a new block L\'Université Numérique Learning paths';
-$string['pluginname'] = 'L\'Université Numérique Learning paths';
-$string['apiurl'] = 'API URL';
-$string['apiurl_desc'] = 'API URL of L\'Université Numérique Learning paths';
-$string['body_text'] = 'Body text of the block';
+
+defined('MOODLE_INTERNAL') || die;
+
+class block_learningpaths_edit_form extends block_edit_form {
+
+    protected function specific_definition($mform) {
+        
+        // Section header title according to language file.
+        $mform->addElement('header', 'config_header', get_string('blocksettings', 'block'));
+
+        // A sample string variable with a default value.
+        $mform->addElement('editor', 'config_text', get_string('body_text', 'block_learningpaths'), array('rows' => 4, 'cols' => 60));
+        $mform->setDefault('config_text', 'default value');
+        $mform->setType('config_text', PARAM_CLEANHTML);        
+
+    }
+
+}

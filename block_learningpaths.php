@@ -20,7 +20,7 @@ defined('MOODLE_INTERNAL') || die();
  * learningpaths block
  *
  * @package    block_learningpaths
- * @copyright  2021 Pierre Duverneix
+ * @copyright  2022 Pierre Duverneix
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -43,16 +43,23 @@ class block_learningpaths extends block_base {
     }
 
     public function get_content() {
+        $this->content = new stdClass();
+        $this->content->text = '';
+
         $apiurl = get_config('learningpaths', 'apiurl');
         if (!isset($apiurl)) {
             throw new \Error('No defined API URL');
         }
 
+        if (!empty($this->config->text)) {
+            $text = isset($this->config->text["text"]) ? $this->config->text["text"] : implode('', $this->config->text);
+            $this->content->text .= $text;
+        }
+
         $renderer = $this->page->get_renderer('block_learningpaths');
         $content = new \block_learningpaths\output\main($apiurl);
 
-        $this->content = new stdClass();
-        $this->content->text = $renderer->render($content);
+        $this->content->text .= $renderer->render($content);
         return $this->content;
     }
 

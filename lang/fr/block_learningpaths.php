@@ -24,3 +24,4 @@ $string['learningpaths:addinstance'] = 'Ajouter un block Parcours de L\'Universi
 $string['pluginname'] = 'Parcours de L\'Université Numérique';
 $string['apiurl'] = 'API URL';
 $string['apiurl_desc'] = 'URL de l\'API des Parcours de L\'Université Numérique';
+$string['body_text'] = 'Texte du bloc';
