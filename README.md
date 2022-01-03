@@ -1,9 +1,15 @@
 # Moodle block Learningpaths
 
-## Build :
+## Dev :
 
 ```
 yarn install
 grunt watch
-grunt amd
+```
+
+## Build :
+
+```
+grunt webpack:dev
+grunt webpack:prod
 ```
