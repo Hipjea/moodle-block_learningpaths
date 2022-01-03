@@ -8,11 +8,19 @@ const Year = (year: YearData) => {
 
     const handleSelection = () => setSelected(!selected);
 
+    const handleKeypress = (event: KeyboardEvent) => {
+        if (event.key == '13' || event.keyCode === 13) {
+            setSelected(!selected);
+        }
+    }
+
     return (
         <>
             <h5 
                 className={`lpb-year-name ${selected ? 'active' : ''}`}
                 onClick={() => handleSelection()}
+                onKeyDown={(event: any) => handleKeypress(event)}
+                tabIndex={0}
             >
                 {year.name}
             </h5>

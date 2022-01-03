@@ -1,9 +1,10 @@
-export type DataProps =
+export type Data =
   | {
       id: number;
       name: string;
       description: string;
       years: Array<YearData>;
+      resources: Array<ResourceData> | null;
     };
 
 export type YearData = 

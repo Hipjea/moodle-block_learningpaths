@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from './Context';
 import DataView from './DataView';
 import Loader from './Loader';
+import strings from '../utils/strings.utils';
 
 
 const Modal = (): JSX.Element => {
@@ -12,6 +13,7 @@ const Modal = (): JSX.Element => {
     useEffect(() => {
         if (currentData && currentData != {} && currentData != []) {
             setShowModal(true);
+            modalRef.current?.focus();
         }
     });
 
@@ -26,15 +28,34 @@ const Modal = (): JSX.Element => {
         return () => document.removeEventListener("click", handleClick);
     }, []);
 
+    useEffect(() => {
+        window.addEventListener("keydown", handleEscape, false);
+        return () => {
+            window.removeEventListener("keydown", handleEscape, false);
+        };
+    });
+
     const closeModal = () => { 
         setCurrentData(null), setShowModal(false);
     }
 
+    const handleEscape = (event: KeyboardEvent) => {
+        if (event.key == '27' || event.keyCode === 27) {
+            closeModal();
+        }
+    }
+
     return (
-        <div id="lpb-modal" className={`${showModal ? "active" : ""}`}>
+        <div 
+            id="lpb-modal" 
+            className={`${showModal ? "active" : ""}`}
+            aria-hidden={`${showModal ? "false" : "true"}`}
+            aria-describedby="modal-desc"
+        >
             <div 
                 ref={modalRef}
                 id="lpb-modal-content"
+                tabIndex={parseInt(`${showModal ? -1 : 0}`)}
             >
                 <span 
                     id="lpb-modal-close"
@@ -47,6 +68,9 @@ const Modal = (): JSX.Element => {
                         ? <Loader />
                         : <DataView {...currentData} />
                     }
+                </div>
+                <div id="modal-desc" className="screenreader-text">
+                    { strings.modalDesc }
                 </div>
             </div>
         </div>
