@@ -17,6 +17,7 @@ const Year = (year: YearData) => {
     return (
         <>
             <h5 
+                id={`lpb-year-name-${year.name}`}
                 className={`lpb-year-name ${selected ? 'active' : ''}`}
                 onClick={() => handleSelection()}
                 onKeyDown={(event: any) => handleKeypress(event)}
@@ -30,6 +31,14 @@ const Year = (year: YearData) => {
                         ?   <Ue {...ue} /> 
                         :   null
                 }) }
+                <div className="top-anchor">
+                    <a 
+                        title={`Revenir au titre ${year.name}`} 
+                        href={`#lpb-year-name-${year.name}`} 
+                        className="top-anchor-href"
+                    >
+                    </a>
+                </div>
             </div>
         </>
     );
